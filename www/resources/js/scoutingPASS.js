@@ -1088,6 +1088,14 @@ function moveTouch(e) {
   initialX = null;
 };
 
+function navToPits(){
+  window.location.replace("pit.html");
+}
+
+function navToHome(){
+  window.location.replace("index.html");
+}
+
 function swipePage(increment) {
   if (qr_regenerate() == true) {
     slides = document.getElementById("main-panel-holder").children
