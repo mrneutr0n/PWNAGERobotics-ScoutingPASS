@@ -1,8 +1,8 @@
 var config_data = `
 {
-  "dataFormat": "tsv",
-  "title": "Scouting PASS 2026",
-  "page_title": "REBUILT",
+  "dataFormat": "kvs",
+  "title": "188 Scouting",
+  "page_title": "Scouting 2026",
   "checkboxAs": "10",
   "prematch": [
     { "name": "Scouter Initials",
@@ -15,7 +15,7 @@ var config_data = `
     { "name": "Event",
       "code": "e",
       "type": "event",
-      "defaultValue": "2026ilch",
+      "defaultValue": "2026onosh",
       "required": "true"
     },
     { "name": "Match Level",
@@ -66,94 +66,175 @@ var config_data = `
     }
   ],
   "auton": [
-    { "name": "Auto Shooting Location",
-      "code": "asl",
-      "type": "clickable_image",
-      "filename": "2026/half_field.png",
-      "dimensions": "7 10",
-      "allowableResponses": "1 2 3 4 8 9 10 11 15 16 17 18 22 23 24 25 29 30 31 32 36 37 38 39 43 44 45 46 50 51 52 53 57 58 59 60 64 65 66 67",
-      "expectedMax": 5,
-      "shape": "circle 5 black red true"
-    },
-    { "name": "Fuel Scored",
-      "code": "afs",
-      "expectedMax": 32,
-      "altInc1": 10,
-      "altInc2": 5,
-      "type": "counter"
-    },
-    { "name": "Pass from Neutral Zone",
-      "code": "apn",
-      "expectedMax": 60,
-      "altInc1": 10,
-      "altInc2": 5,
-      "type": "counter"
-    },
-    { "name": "Climb (L1)",
-      "code": "ac",
+    { "name": "Auto Action",
+      "code": "aa",
       "type": "radio",
       "choices": {
-        "c": "Climbed<br>",
-        "a": "Attempted<br>",
-        "x": "Not Attempted"
+        "n": "None<br>",
+        "m": "Mobility only<br>",
+        "s": "Score attempt only<br>",
+        "c": "Combo auto<br>",
+        "x": "Unknown"
       },
       "defaultValue": "x"
     },
-    { "name": "Pickup from Depot",
-      "code": "afd",
-      "type": "bool"
+    { "name": "Auto Result",
+      "code": "ar",
+      "type": "radio",
+      "choices": {
+        "f": "Failed<br>",
+        "p": "Partial<br>",
+        "s": "Successful<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Pickup from Outpost",
-      "code": "afo",
-      "type": "bool"
+    { "name": "Balls Scored<br>(approx)",
+      "code": "abs",
+      "type": "radio",
+      "choices": {
+        "0": "0<br>",
+        "1": "1-2<br>",
+        "2": "3-5<br>",
+        "3": "6+<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Pickup from Neutral Zone",
-      "code": "aff",
-      "type": "bool"
+    { "name": "Balls Missed<br>(approx)",
+      "code": "abm",
+      "type": "radio",
+      "choices": {
+        "0": "0<br>",
+        "1": "1-2<br>",
+        "2": "3-5<br>",
+        "3": "6+<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Ball Accuracy",
+      "code": "aac",
+      "type": "radio",
+      "choices": {
+        "n": "No shots<br>",
+        "p": "Poor<br>",
+        "f": "Fair<br>",
+        "g": "Good<br>",
+        "e": "Excellent<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Auto Path Conflict",
+      "code": "apc",
+      "type": "radio",
+      "choices": {
+        "n": "None<br>",
+        "m": "Minor risk<br>",
+        "h": "High risk<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     }
   ],
   "teleop": [
-    { "name": "Shooting Locations",
-      "code": "tsl",
-      "type": "clickable_image",
-      "filename": "2026/half_field.png",
-      "dimensions": "7 10",
-      "allowableResponses": "1 2 3 4 8 9 10 11 15 16 17 18 22 23 24 25 29 30 31 32 36 37 38 39 43 44 45 46 50 51 52 53 57 58 59 60 64 65 66 67",
-      "expectedMax": 25,
-      "shape": "circle 5 black red true"
+    { "name": "Primary Role",
+      "code": "pr",
+      "type": "radio",
+      "choices": {
+        "p": "Primary scorer<br>",
+        "s": "Secondary scorer<br>",
+        "d": "Defender<br>",
+        "e": "Endgame bot<br>",
+        "u": "Support / utility<br>",
+        "x": "No clear role"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Fuel Scored",
-      "code": "tfs",
-      "expectedMax": 150,
-      "altInc1": 10,
-      "altInc2": 5,
-      "type": "counter"
+    { "name": "Scoring Threat",
+      "code": "sth",
+      "type": "radio",
+      "choices": {
+        "0": "None<br>",
+        "1": "Opportunistic<br>",
+        "2": "Secondary<br>",
+        "3": "Primary<br>",
+        "4": "Elite"
+      },
+      "defaultValue": "1"
     },
-    { "name": "Pass from Neutral Zone",
-      "code": "pnz",
-      "expectedMax": 250,
-      "altInc1": 10,
-      "altInc2": 5,
-      "type": "counter"
+    { "name": "Balls Scored<br>(approx)",
+      "code": "tbs",
+      "type": "radio",
+      "choices": {
+        "0": "0<br>",
+        "1": "1-3<br>",
+        "2": "4-7<br>",
+        "3": "8-12<br>",
+        "4": "13+<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Pass from Opp Alliance Zone",
-      "code": "poa",
-      "expectedMax": 250,
-      "altInc1": 10,
-      "altInc2": 5,
-      "type": "counter"
+    { "name": "Balls Missed<br>(approx)",
+      "code": "tbm",
+      "type": "radio",
+      "choices": {
+        "0": "0<br>",
+        "1": "1-2<br>",
+        "2": "3-5<br>",
+        "3": "6+<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Pickup from Depot",
-      "code": "tfd",
-      "type": "bool"
+    { "name": "Ball Accuracy",
+      "code": "bac",
+      "type": "radio",
+      "choices": {
+        "n": "No shots<br>",
+        "p": "Poor<br>",
+        "f": "Fair<br>",
+        "g": "Good<br>",
+        "e": "Excellent<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Pickup from Outpost",
-      "code": "tfo",
-      "type": "bool"
+    { "name": "Scoring Style",
+      "code": "sty",
+      "type": "radio",
+      "choices": {
+        "c": "Close-range<br>",
+        "f": "Fixed-position<br>",
+        "m": "Moving<br>",
+        "x": "Mixed / unclear"
+      },
+      "defaultValue": "x"
     },
-    { "name": "Pickup from Floor",
-      "code": "tff",
-      "type": "bool"
+    { "name": "Pickup Source",
+      "code": "src",
+      "type": "radio",
+      "choices": {
+        "f": "Floor<br>",
+        "h": "Human player<br>",
+        "m": "Mixed<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Preferred Lane",
+      "code": "lan",
+      "type": "radio",
+      "choices": {
+        "l": "Left<br>",
+        "c": "Center<br>",
+        "r": "Right<br>",
+        "f": "Flexible<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
     }
   ],
   "endgame": [
@@ -166,6 +247,28 @@ var config_data = `
         "3": "Level 3<br>",
         "a": "Attempted<br>",
         "x": "Not Attempted"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Setup Time",
+      "code": "est",
+      "type": "radio",
+      "choices": {
+        "1": "< 15 sec<br>",
+        "2": "15-25 sec<br>",
+        "3": "> 25 sec<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Needs Clear Space",
+      "code": "ecs",
+      "type": "radio",
+      "choices": {
+        "y": "Yes<br>",
+        "n": "No<br>",
+        "s": "Sometimes<br>",
+        "x": "Unknown"
       },
       "defaultValue": "x"
     }
@@ -194,6 +297,17 @@ var config_data = `
       },
       "defaultValue": "x"
     },
+    { "name": "When Defended",
+      "code": "ud",
+      "type": "radio",
+      "choices": {
+        "s": "Shut down<br>",
+        "l": "Slowed<br>",
+        "f": "Mostly fine<br>",
+        "x": "Not observed"
+      },
+      "defaultValue": "x"
+    },
     { "name": "Speed Rating",
       "code": "sr",
       "type": "radio",
@@ -204,7 +318,7 @@ var config_data = `
         "4": "4<br>",
         "5": "5 (fast)"
       },
-      "defaultValue":"3"
+      "defaultValue": "3"
     },
     { "name": "Crossed Bump",
       "code": "bmp",
@@ -214,7 +328,31 @@ var config_data = `
       "code": "tre",
       "type": "bool"
     },
-    { "name": "Died/Immobilized",
+    { "name": "Drive Reliability",
+      "code": "drv",
+      "type": "radio",
+      "choices": {
+        "s": "Rock solid<br>",
+        "m": "Minor issues<br>",
+        "i": "Inconsistent<br>",
+        "d": "Dead / major issue<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Mechanism Reliability",
+      "code": "mec",
+      "type": "radio",
+      "choices": {
+        "s": "Rock solid<br>",
+        "m": "Minor jams<br>",
+        "f": "Frequent jams<br>",
+        "b": "Broken / nonfunctional<br>",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Died / Immobilized",
       "code": "die",
       "type": "bool"
     },
@@ -222,31 +360,28 @@ var config_data = `
       "code": "tip",
       "type": "bool"
     },
-    { "name": "Make good<br>alliance partner?",
+    { "name": "Penalty Risk",
+      "code": "pen",
+      "type": "radio",
+      "choices": {
+        "l": "Low<br>",
+        "m": "Medium<br>",
+        "h": "High<br>",
+        "c": "Card risk<br>",
+        "x": "Not observed"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Good alliance<br>partner?",
       "tooltip": "Would you want this robot on your alliance in eliminations?",
       "code": "all",
       "type": "bool"
     },
-    { "name": "Was Defended",
-      "code": "def",
-      "type": "bool"
-    },
-    { "name": "Excessive Penalties",
-      "code": "pen",
-      "type": "bool"
-    },
-    { "name": "Fuel Percentage",
-      "tooltip": "What percentage of the total fuel for this alliance did this robot score?",
-      "code": "pct",
-      "type": "number",
-      "min": 0,
-      "max": 100
-    },
-    { "name": "Comments",
+    { "name": "One-Line Summary",
       "code": "co",
       "type": "text",
-      "size": 15,
-      "maxSize": 55
+      "size": 20,
+      "maxSize": 80
     }
   ]
 }`;
