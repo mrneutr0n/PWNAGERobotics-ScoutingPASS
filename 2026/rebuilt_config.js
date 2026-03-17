@@ -125,7 +125,7 @@ var config_data = `
         "p": "Poor",
         "f": "Fair",
         "g": "Good",
-        "e": "Excellent",
+        "e": "Excellent"
       },
       "defaultValue": "n"
     },
@@ -231,7 +231,7 @@ var config_data = `
       "choices": {
         "f": "Floor",
         "h": "Human player",
-        "m": "Mixed",
+        "m": "Mixed"
       },
       "defaultValue": "f"
     },
@@ -254,7 +254,7 @@ var config_data = `
         "x": "Unknown"
       },
       "defaultValue": "x"
-    }
+    },
     { "name": "Preferred Entrance",
       "code": "ent",
       "type": "radio",
