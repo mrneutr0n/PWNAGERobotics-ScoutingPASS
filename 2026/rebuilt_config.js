@@ -73,10 +73,9 @@ var config_data = `
         "n": "None",
         "m": "Mobility only",
         "s": "Score attempt only",
-        "c": "Combo auto",
-        "x": "Unknown"
+        "c": "Combo auto"
       },
-      "defaultValue": "x"
+      "defaultValue": "n"
     },
     { "name": "Auto Result",
       "code": "ar",
@@ -94,26 +93,25 @@ var config_data = `
       "type": "radio",
       "choices": {
         "0": "0",
+        "10": "10",
         "20": "20",
+        "30": "30",
         "40": "40",
+        "50": "50",
         "60": "60",
+        "70": "70",
         "80": "80",
-        "100": "100",
-        "150": "150",
-        "200": "200",
-        "fh": "Full Hopper",
-        "fh+": "Full Hopper ++",
-        "x": "Unknown"
+        "90": "90"
       },
-      "defaultValue": "x"
+      "defaultValue": "0"
     },
     { "name": "Balls Missed<br>(approx)",
       "code": "abm",
       "type": "radio",
       "choices": {
-        "20": "~20% missed",
-        "50": "~50% missed",
-        "80": "~80% missed",
+        "20": "20% missed",
+        "50": "50% missed",
+        "80": "80% missed",
         "ms": "Mostly Scored",
         "x": "Unknown"
       },
@@ -128,9 +126,8 @@ var config_data = `
         "f": "Fair",
         "g": "Good",
         "e": "Excellent",
-        "x": "Unknown"
       },
-      "defaultValue": "x"
+      "defaultValue": "n"
     },
     { "name": "Auto Path Conflict",
       "code": "apc",
@@ -158,15 +155,15 @@ var config_data = `
       },
       "defaultValue": "x"
     },
-    { "name": "Scoring Threat",
+    { "name": "Scoring Threat(To Us)",
       "code": "sth",
       "type": "radio",
       "choices": {
         "0": "None",
-        "1": "Opportunistic",
-        "2": "Secondary",
-        "3": "Primary",
-        "4": "Elite"
+        "1": "Low",
+        "2": "Medium",
+        "3": "High",
+        "4": "Very High"
       },
       "defaultValue": "1"
     },
@@ -196,9 +193,9 @@ var config_data = `
       "code": "tbm",
       "type": "radio",
       "choices": {
-        "20": "~20% missed",
-        "50": "~50% missed",
-        "80": "~80% missed",
+        "20": "20% missed",
+        "50": "50% missed",
+        "80": "80% missed",
         "ms": "Mostly Scored",
         "x": "Unknown"
       },
@@ -235,18 +232,38 @@ var config_data = `
         "f": "Floor",
         "h": "Human player",
         "m": "Mixed",
-        "x": "Unknown"
       },
-      "defaultValue": "x"
+      "defaultValue": "f"
+    },
+    { "name": "Crossed Bump",
+      "code": "bmp",
+      "type": "bool"
+    },
+    { "name": "Crossed Trench",
+      "code": "tre",
+      "type": "bool"
     },
     { "name": "Preferred Lane",
       "code": "lan",
       "type": "radio",
       "choices": {
-        "l": "Left",
-        "c": "Center",
-        "r": "Right",
-        "f": "Flexible",
+        "c": "Close",
+        "m": "Middle",
+        "f": "Far",
+        "fl": "Flexible",
+        "x": "Unknown"
+      },
+      "defaultValue": "x"
+    }
+    { "name": "Preferred Entrance",
+      "code": "ent",
+      "type": "radio",
+      "choices": {
+        "ct": "Close Trench",
+        "cb": "Close Bump",
+        "fb": "Far Bump",
+        "ft": "Far Trench", 
+        "fl": "Flexible",
         "x": "Unknown"
       },
       "defaultValue": "x"
@@ -334,14 +351,6 @@ var config_data = `
         "5": "5 (fast)"
       },
       "defaultValue": "3"
-    },
-    { "name": "Crossed Bump",
-      "code": "bmp",
-      "type": "bool"
-    },
-    { "name": "Crossed Trench",
-      "code": "tre",
-      "type": "bool"
     },
     { "name": "Drive Reliability",
       "code": "drv",
