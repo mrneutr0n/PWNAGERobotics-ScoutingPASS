@@ -105,40 +105,17 @@ var config_data = `
       },
       "defaultValue": "0"
     },
-    { "name": "Balls Missed<br>(approx)",
-      "code": "abm",
-      "type": "radio",
-      "choices": {
-        "20": "20% missed",
-        "50": "50% missed",
-        "80": "80% missed",
-        "ms": "Mostly Scored",
-        "x": "Unknown"
-      },
-      "defaultValue": "x"
-    },
     { "name": "Ball Accuracy",
       "code": "aac",
       "type": "radio",
       "choices": {
         "n": "No shots",
-        "p": "Poor",
-        "f": "Fair",
-        "g": "Good",
-        "e": "Excellent"
+        "p": "Poor(0-25%)",
+        "f": "Fair(25-50%)",
+        "g": "Good(50-75%)",
+        "e": "Excellent(75-100%)"
       },
       "defaultValue": "n"
-    },
-    { "name": "Auto Path Conflict",
-      "code": "apc",
-      "type": "radio",
-      "choices": {
-        "n": "None",
-        "m": "Minor risk",
-        "h": "High risk",
-        "x": "Unknown"
-      },
-      "defaultValue": "x"
     }
   ],
   "teleop": [
