@@ -183,6 +183,26 @@ input[type="number"] {
     border: 2px solid #ccc;
 }
 
+/* Keep native dropdowns readable across browser/OS defaults */
+select {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    color: #111;
+    background-color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    appearance: menulist;
+}
+
+option,
+optgroup {
+    color: #111;
+    background-color: #fff;
+}
+
 /* ── Radio: Segmented slider control ── */
 .radio-group {
     display: flex;
@@ -204,12 +224,12 @@ input[type="number"] {
 
 .radio-choice {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex: 1 1 auto;
     min-width: 0;
     min-height: 48px;
-    padding: 8px 6px;
+    padding: 0;
     cursor: pointer;
     font-size: 13px;
     font-weight: 500;
@@ -234,9 +254,33 @@ input[type="number"] {
 }
 
 .radio-choice span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: inherit;
+    padding: 8px 6px;
     pointer-events: none;
     line-height: 1.2;
     word-break: break-word;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,0.16);
+    color: inherit;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+#auton_table .radio-choice span,
+#endgame_table .radio-choice span,
+#teleop_table .radio-choice span {
+    background-color: rgba(255,255,255,0.72);
+    color: #111;
+}
+
+/* Cross-browser checked-state fallback (works without :has support) */
+.radio-choice input:checked + span {
+    background-color: #2196F3;
+    color: white;
+    font-weight: 700;
 }
 
 .radio-choice:has(input:checked) {
@@ -273,9 +317,19 @@ input[type="number"] {
     color: white;
 }
 
+.radio-choice[data-alliance="red"] input:checked + span {
+    background-color: #D32F2F;
+    color: white;
+}
+
 .radio-choice[data-alliance="blue"]:has(input:checked) {
     background-color: #1565C0;
     border-color: #0D47A1;
+    color: white;
+}
+
+.radio-choice[data-alliance="blue"] input:checked + span {
+    background-color: #1565C0;
     color: white;
 }
 
@@ -468,6 +522,22 @@ button {
 #data {
     font-family: 'Lucida Console', 'monospace';
     text-align: justify;
+}
+
+/* Windows high-contrast mode readability */
+@media (forced-colors: active) {
+    select,
+    option,
+    .radio-choice span {
+        background-color: Canvas;
+        color: CanvasText;
+        border: 1px solid CanvasText;
+    }
+
+    .radio-choice input:checked + span {
+        background-color: Highlight;
+        color: HighlightText;
+    }
 }
 
 /* ── iPad / tablet responsive ── */
