@@ -976,8 +976,6 @@ function addElement(table, idx, data) {
     data.type == "pass_fail"
   ) {
     idx = addCheckbox(table, idx, name, data);
-  } else if (data.type == "counter") {
-    idx = addCounter(table, idx, name, data);
   } else if (data.type == "timer" || data.type == "cycle") {
     idx = addTimer(table, idx, name, data);
   } else {
