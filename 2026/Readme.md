@@ -186,6 +186,133 @@ The "Pass from Neutral Zone" and "Pass from Opp Alliance Zone" counters track st
 
 ## Data Flow and Usage
 
+### Backend JSON Reference (REBUILT Match Scouting)
+
+ScoutingPASS emits match data as `kvs` (`key=value;key=value;...`).  
+For backend processing, convert that payload into JSON using the field codes below.
+
+#### Recommended normalized JSON shape
+
+```json
+{
+  "s": "AB",
+  "e": "2026onosh",
+  "l": "qm",
+  "m": "12",
+  "r": "r2",
+  "t": "188",
+  "as": "[32]",
+  "aa": "c",
+  "ar": "s",
+  "abs": "40",
+  "aac": "g",
+  "pr": "p",
+  "tsa": ["s40", "t"],
+  "s1a": ["d"],
+  "s2a": ["s60", "t"],
+  "s3a": [],
+  "s4a": ["f"],
+  "egs": ["s20"],
+  "sth": "3",
+  "tbs": "150",
+  "bac": "g",
+  "sty": "m",
+  "src": "f",
+  "bmp": 1,
+  "tre": 0,
+  "ent": "ct",
+  "ega": ["s20"],
+  "tc": "2",
+  "est": "2",
+  "ecs": "c",
+  "ds": "v",
+  "dr": "g",
+  "ud": "f",
+  "sr": "4",
+  "drv": "s",
+  "mec": "m",
+  "die": 0,
+  "bea": 0,
+  "pen": "m",
+  "all": 1,
+  "co": "Fast scorer, clean cycles"
+}
+```
+
+#### Shift action encoding
+
+- `tsa`, `s1a`, `s2a`, `s3a`, `s4a`, `egs`, and `ega` are multi-select action lists.
+- Action values:
+  - `d` = defense
+  - `t` = shuttling
+  - `f` = full-court shuttling
+  - `sXX` = scoring with counted balls in that phase (examples: `s0`, `s20`, `s40`, `s60`, `s80`, `s100`)
+- If no action is selected, store an empty array (`[]`).
+
+#### Field code dictionary (match scouting)
+
+```json
+{
+  "prematch": {
+    "s": "Scouter Initials",
+    "e": "Event",
+    "l": "Match Level",
+    "m": "Match #",
+    "r": "Robot",
+    "t": "Team #",
+    "as": "Auto Start Location"
+  },
+  "auton": {
+    "aa": "Auto Action",
+    "ar": "Auto Result",
+    "abs": "Auto Balls Scored (approx)",
+    "aac": "Auto Ball Accuracy"
+  },
+  "teleop": {
+    "pr": "Primary Role",
+    "tsa": "Transition Shift Actions (2:20-2:10)",
+    "s1a": "Shift 1 Actions (2:10-1:45)",
+    "s2a": "Shift 2 Actions (1:45-1:20)",
+    "s3a": "Shift 3 Actions (1:20-0:55)",
+    "s4a": "Shift 4 Actions (0:55-0:30)",
+    "egs": "End Game Shift Actions (0:30-0:00)",
+    "sth": "Scoring Threat",
+    "tbs": "Teleop Balls Scored (approx)",
+    "bac": "Ball Accuracy",
+    "sty": "Scoring Style",
+    "src": "Pickup Source",
+    "bmp": "Crossed Bump",
+    "tre": "Crossed Trench",
+    "ent": "Preferred Entrance"
+  },
+  "endgame": {
+    "ega": "End Game Actions (0:30-0:00)",
+    "tc": "Climb",
+    "est": "Total Hang Time",
+    "ecs": "Hang Location"
+  },
+  "postmatch": {
+    "ds": "Driver Skill",
+    "dr": "Defense Rating",
+    "ud": "When Defended",
+    "sr": "Speed Rating",
+    "drv": "Drive Reliability",
+    "mec": "Mechanism Reliability",
+    "die": "Died / Immobilized",
+    "bea": "Easily Beached",
+    "pen": "Penalty Risk",
+    "all": "Good Alliance Partner",
+    "co": "One-Line Summary"
+  }
+}
+```
+
+#### Parsing notes
+
+- `checkboxAs` is set to `"10"` for this config, so checkbox fields arrive as `"1"` or `"0"` in raw payloads.
+- Clickable image fields (`as`) are array-like strings in raw payloads (example: `"[32]"`).
+- Multi-select fields (`tsa`, `s1a`, `s2a`, `s3a`, `s4a`, `egs`, `ega`) arrive array-like in raw payloads; parse into string arrays on ingest.
+
 ### Development and Testing
 
 1. **Configure:** Customize config files for your team's scouting priorities

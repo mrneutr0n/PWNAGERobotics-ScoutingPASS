@@ -62,7 +62,7 @@ var config_data = `
       "clickRestriction": "one",
       "dimensions": "7 10",
       "allowableResponses": "4 11 18 25 32 39 46 53 60 67",
-      "shape": "circle 5 black red true"
+      "shape": "circle 25 black white true"
     }
   ],
   "auton": [
@@ -131,6 +131,90 @@ var config_data = `
         "x": "No clear role"
       },
       "defaultValue": "x"
+    },
+    { "name": "Transition Shift Actions",
+      "tooltip": "TELEOP transition shift (2:20-2:10). Both HUBs are active.",
+      "code": "tsa",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in transition:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
+    },
+    { "name": "Shift 1 Actions",
+      "tooltip": "Shift 1 (2:10-1:45).",
+      "code": "s1a",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in shift 1:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
+    },
+    { "name": "Shift 2 Actions",
+      "tooltip": "Shift 2 (1:45-1:20).",
+      "code": "s2a",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in shift 2:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
+    },
+    { "name": "Shift 3 Actions",
+      "tooltip": "Shift 3 (1:20-0:55).",
+      "code": "s3a",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in shift 3:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
+    },
+    { "name": "Shift 4 Actions",
+      "tooltip": "Shift 4 (0:55-0:30).",
+      "code": "s4a",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in shift 4:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
+    },
+    { "name": "End Game Shift Actions",
+      "tooltip": "End game shift actions (0:30-0:00) in the same format as other shifts.",
+      "code": "egs",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in end game shift:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
     },
     { "name": "Scoring Threat(To Us)",
       "code": "sth",
@@ -201,11 +285,13 @@ var config_data = `
     },
     { "name": "Crossed Bump",
       "code": "bmp",
-      "type": "bool"
+      "type": "bool",
+      "centerAlign": true
     },
     { "name": "Crossed Trench",
       "code": "tre",
-      "type": "bool"
+      "type": "bool",
+      "centerAlign": true
     },
     { "name": "Preferred Entrance",
       "code": "ent",
@@ -222,6 +308,20 @@ var config_data = `
     }
   ],
   "endgame": [
+    { "name": "End Game Actions",
+      "tooltip": "End game period (0:30-0:00). Both HUBs are active.",
+      "code": "ega",
+      "type": "multi",
+      "scoreWithCount": true,
+      "scoreChoiceKey": "s",
+      "scoreLabel": "Balls scored in end game:",
+      "choices": {
+        "s": "Scoring",
+        "d": "Playing defense",
+        "t": "Shuttling",
+        "f": "Full-court shuttling"
+      }
+    },
     { "name": "Climb",
       "code": "tc",
       "type": "radio",
